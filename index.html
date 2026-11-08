@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bot Backup</title>
+  <meta name="description" content="Bot Backup is Tiange Ye's personal desktop utility. It uses rclone to back up his own non-secret bot configuration and work state to his own Google Drive.">
+  <style>
+    :root {
+      color-scheme: light;
+      --text: #1c1917;
+      --muted: #44403c;
+      --bg: #fafaf9;
+      --line: #d6d3d1;
+      --link: #1e3a8a;
+      --visited: #5b21b6;
+      --focus: #1d4ed8;
+      --code-bg: #f5f5f4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --text: #f5f5f4;
+        --muted: #d6d3d1;
+        --bg: #1c1917;
+        --line: #44403c;
+        --link: #93c5fd;
+        --visited: #d8b4fe;
+        --focus: #93c5fd;
+        --code-bg: #292524;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    .skip {
+      position: absolute;
+      left: 0.75rem;
+      top: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      background: var(--bg);
+      color: var(--text);
+      border: 2px solid var(--text);
+      z-index: 2;
+      transform: translateY(-200%);
+    }
+    .skip:focus { transform: none; }
+    header, main, footer {
+      width: min(40rem, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem 1.5rem;
+      padding: 1.25rem 0 0.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .mark {
+      margin: 0;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    nav a {
+      display: inline-block;
+      margin: 0 1.25rem 0 0;
+      padding: 0.35rem 0;
+    }
+    nav a[aria-current="page"] { font-weight: 700; }
+    main { padding: 1.5rem 0 2.5rem; }
+    h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin: 0 0 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    h2 {
+      font-size: 1.25rem;
+      line-height: 1.3;
+      margin: 2rem 0 0.5rem;
+    }
+    p { margin: 0.75rem 0; }
+    a { color: var(--link); overflow-wrap: anywhere; }
+    a:visited { color: var(--visited); }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible, .skip:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+    dl {
+      margin: 1.25rem 0;
+      display: grid;
+      grid-template-columns: 9.5rem 1fr;
+      gap: 0.35rem 1rem;
+    }
+    dt { font-weight: 600; }
+    dd { margin: 0; }
+    code {
+      font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+      font-size: 0.92em;
+      background: var(--code-bg);
+      padding: 0.05em 0.25em;
+    }
+    footer {
+      padding: 1rem 0 2.5rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    @media (max-width: 36rem) {
+      h1 { font-size: 1.7rem; }
+      dl { grid-template-columns: 1fr; }
+      dt { margin-top: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <p class="mark">Bot Backup</p>
+    <nav aria-label="Pages">
+      <a href="./index.html" aria-current="page">Home</a>
+      <a href="./privacy.html">Privacy notice</a>
+    </nav>
+  </header>
+  <main id="main" tabindex="-1">
+    <h1>Bot Backup</h1>
+    <p>Bot Backup is a personal desktop application maintained by Tiange Ye. He uses <a href="https://rclone.org/drive/">rclone</a> on a schedule to copy his own non-secret bot configuration and work state to his own Google Drive.</p>
+    <p>Read the <a href="./privacy.html">privacy notice</a>. That page is the privacy policy for this application.</p>
+
+    <h2>At a glance</h2>
+    <dl>
+      <dt>Owner</dt>
+      <dd>Tiange Ye</dd>
+      <dt>Application</dt>
+      <dd>Bot Backup, a personal Google OAuth desktop utility</dd>
+      <dt>What is copied</dt>
+      <dd>His own non-secret bot configuration and work state</dd>
+      <dt>Where it goes</dt>
+      <dd>His own Google Drive, so he can keep, check, and restore those backups</dd>
+      <dt>This website</dt>
+      <dd>A public description and privacy notice. It does not sign anyone in and it does not hold backup files.</dd>
+    </dl>
+
+    <h2>What this website is</h2>
+    <p>These pages exist so the application has a public homepage and privacy notice. The site is not the backup program. It is not a sign-in page, and it is not an OAuth redirect address. Opening it does not start a Google sign-in, does not request Drive access, and does not show backup data.</p>
+
+    <h2>Google Drive</h2>
+    <p>When the owner runs Bot Backup on his own computer, Google Drive access is used only so he can manage his own backups and check or restore them. rclone may request Google's full Drive scope, <code>https://www.googleapis.com/auth/drive</code>. This site does not describe that access as the narrower <code>drive.file</code> scope, and it does not say the grant is limited to one folder.</p>
+    <p>OAuth client credentials, tokens, and the rclone configuration stay on the owner's computers. They are not published here.</p>
+  </main>
+  <footer>
+    <p>Maintained by Tiange Ye. <a href="https://github.com/tiangeye/bot-backup-info">Repository</a>. <a href="https://github.com/tiangeye/bot-backup-info/issues">Open an issue</a> if you have a question about this site. Do not include passwords, tokens, configuration, or backup contents; issues are public.</p>
+  </footer>
+</body>
+</html>
